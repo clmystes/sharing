@@ -54,4 +54,40 @@ touch src/main.js
 code .
 
 # 如何使用变量, 声明变量 var=123, 使用时需要加上$修饰符, echo $var, 注意这里的赋值不允许有空格
-bash中使用未定义的变量不会有任何错误，仅仅返回空给你，
+bash中使用未定义的变量不会有任何错误，仅仅返回空给你，声明的变量仅仅存在于当前的session中，如果你打开了新的
+窗口 变量就不能再使用了，这些就是所谓的环境变量 env
+
+# 函数。首先我们创建一个bash脚本 function.bash,并赋予执行权限，我们来看下函数的定义
+function a () {
+  echo "$1 !"
+}
+
+a "lee"
+
+# 退出值，bash的结束状态吗是由0-255的整数表示，可以用特殊标识符 $? 来读取 比如
+ls
+echo $?
+ls xxxxx
+echo $?
+
+# 条件语句, bash中的if语句很有趣
+if [[ $USER = 'lee' ]]; then
+  echo "true"
+else
+  echo "false"
+fi
+
+上面是字符串的比较，如果比较数字的
+1 -eq 1
+不等是
+1 -ne 1
+可以使用 -e xxx.sh 检查文件是否存在
+-z 检查一个变量是否为empty
+
+# 最后 | > >>
+举个例子，首先 ps ax 可以查询当前正在运行的进程
+然后我们想找到所有chrome相关进程
+ps ax | grep Chrome
+
+重定向符 ls > a.txt
+append ls >> a.txt
